@@ -4,6 +4,7 @@ import (
 	"net"
 	"os"
 
+	"github.com/ansh-devs/tc-assessment/internal/database"
 	"github.com/ansh-devs/tc-assessment/protos"
 	_ "github.com/joho/godotenv/autoload"
 	"github.com/sirupsen/logrus"
@@ -14,9 +15,10 @@ import (
 // UserService Definition of the UserService
 type UserService struct {
 	protos.UnimplementedUserServiceServer
-	Srvr *grpc.Server
-	Port string
-	Ln   net.Listener
+	Repository database.UserRepository
+	Srvr       *grpc.Server
+	Port       string
+	Ln         net.Listener
 }
 
 // NewUserService create an instance of User Service listens to the port and binds the listener to the UserService
@@ -25,6 +27,7 @@ func NewUserService() *UserService {
 
 	srv.Port = ":" + os.Getenv("PORT")
 	srv.Ln = MustListenToAddr(srv.Port)
+	srv.Repository = database.NewUserRepository()
 
 	srv.ConfigureGapi()
 
@@ -48,3 +51,6 @@ func (s *UserService) ConfigureGapi() {
 	logrus.WithFields(logrus.Fields{"message": "ready to accept connections"}).Info("user_service")
 
 }
+
+// mustEmbedUnimplementedUserServiceServer implements protos.UserServiceServer.
+func (b *UserService) mustEmbedUnimplementedUserServiceServer() {}

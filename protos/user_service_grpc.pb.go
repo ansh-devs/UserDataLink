@@ -19,9 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	UserService_GetUserById_FullMethodName       = "/protov3.UserService/GetUserById"
-	UserService_GetUsersListByIds_FullMethodName = "/protov3.UserService/GetUsersListByIds"
-	UserService_GetUserByCriteria_FullMethodName = "/protov3.UserService/GetUserByCriteria"
+	UserService_GetUserById_FullMethodName        = "/protov3.UserService/GetUserById"
+	UserService_GetUsersListByIds_FullMethodName  = "/protov3.UserService/GetUsersListByIds"
+	UserService_GetUsersByCriteria_FullMethodName = "/protov3.UserService/GetUsersByCriteria"
 )
 
 // UserServiceClient is the client API for UserService service.
@@ -30,7 +30,7 @@ const (
 type UserServiceClient interface {
 	GetUserById(ctx context.Context, in *GetUserByIdRequest, opts ...grpc.CallOption) (*GetUserByIdResponse, error)
 	GetUsersListByIds(ctx context.Context, in *GetUsersListByIdsRequest, opts ...grpc.CallOption) (*GetUsersListByIdsResponse, error)
-	GetUserByCriteria(ctx context.Context, in *GetUserByCriteriaRequest, opts ...grpc.CallOption) (*GetUserByCriteriaResponse, error)
+	GetUsersByCriteria(ctx context.Context, in *GetUsersByCriteriaRequest, opts ...grpc.CallOption) (*GetUsersByCriteriaResponse, error)
 }
 
 type userServiceClient struct {
@@ -59,9 +59,9 @@ func (c *userServiceClient) GetUsersListByIds(ctx context.Context, in *GetUsersL
 	return out, nil
 }
 
-func (c *userServiceClient) GetUserByCriteria(ctx context.Context, in *GetUserByCriteriaRequest, opts ...grpc.CallOption) (*GetUserByCriteriaResponse, error) {
-	out := new(GetUserByCriteriaResponse)
-	err := c.cc.Invoke(ctx, UserService_GetUserByCriteria_FullMethodName, in, out, opts...)
+func (c *userServiceClient) GetUsersByCriteria(ctx context.Context, in *GetUsersByCriteriaRequest, opts ...grpc.CallOption) (*GetUsersByCriteriaResponse, error) {
+	out := new(GetUsersByCriteriaResponse)
+	err := c.cc.Invoke(ctx, UserService_GetUsersByCriteria_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -74,7 +74,7 @@ func (c *userServiceClient) GetUserByCriteria(ctx context.Context, in *GetUserBy
 type UserServiceServer interface {
 	GetUserById(context.Context, *GetUserByIdRequest) (*GetUserByIdResponse, error)
 	GetUsersListByIds(context.Context, *GetUsersListByIdsRequest) (*GetUsersListByIdsResponse, error)
-	GetUserByCriteria(context.Context, *GetUserByCriteriaRequest) (*GetUserByCriteriaResponse, error)
+	GetUsersByCriteria(context.Context, *GetUsersByCriteriaRequest) (*GetUsersByCriteriaResponse, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -88,8 +88,8 @@ func (UnimplementedUserServiceServer) GetUserById(context.Context, *GetUserByIdR
 func (UnimplementedUserServiceServer) GetUsersListByIds(context.Context, *GetUsersListByIdsRequest) (*GetUsersListByIdsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUsersListByIds not implemented")
 }
-func (UnimplementedUserServiceServer) GetUserByCriteria(context.Context, *GetUserByCriteriaRequest) (*GetUserByCriteriaResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetUserByCriteria not implemented")
+func (UnimplementedUserServiceServer) GetUsersByCriteria(context.Context, *GetUsersByCriteriaRequest) (*GetUsersByCriteriaResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUsersByCriteria not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
 
@@ -140,20 +140,20 @@ func _UserService_GetUsersListByIds_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_GetUserByCriteria_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetUserByCriteriaRequest)
+func _UserService_GetUsersByCriteria_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUsersByCriteriaRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).GetUserByCriteria(ctx, in)
+		return srv.(UserServiceServer).GetUsersByCriteria(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UserService_GetUserByCriteria_FullMethodName,
+		FullMethod: UserService_GetUsersByCriteria_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).GetUserByCriteria(ctx, req.(*GetUserByCriteriaRequest))
+		return srv.(UserServiceServer).GetUsersByCriteria(ctx, req.(*GetUsersByCriteriaRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -174,8 +174,8 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _UserService_GetUsersListByIds_Handler,
 		},
 		{
-			MethodName: "GetUserByCriteria",
-			Handler:    _UserService_GetUserByCriteria_Handler,
+			MethodName: "GetUsersByCriteria",
+			Handler:    _UserService_GetUsersByCriteria_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

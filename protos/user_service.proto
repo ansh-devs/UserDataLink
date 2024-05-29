@@ -5,8 +5,15 @@ option go_package = "./protos";
 service UserService {
     rpc GetUserById (GetUserByIdRequest) returns (GetUserByIdResponse);
     rpc GetUsersListByIds (GetUsersListByIdsRequest) returns (GetUsersListByIdsResponse);
-    rpc GetUserByCriteria (GetUserByCriteriaRequest) returns (GetUserByCriteriaResponse);
-    
+    rpc GetUsersByCriteria (GetUsersByCriteriaRequest) returns (GetUsersByCriteriaResponse);   
+}
+
+enum UserCriterias {
+    FOO_UNSPECIFIED = 0;
+    PHONE = 1;
+    CITY = 2;
+    HEIGHT = 3;
+    ISMARRIED = 4;
 }
 
 // GetUserById Messages definations
@@ -18,6 +25,9 @@ message GetUsersListByIdsRequest {}
 message GetUsersListByIdsResponse {}
 
 
-// GetUserByCriteria Messages definations
-message GetUserByCriteriaRequest {}
-message GetUserByCriteriaResponse {}
+// GetUserByCriteria Messages definations 
+message GetUsersByCriteriaRequest {
+    UserCriterias type=1;
+    string value=2;
+}
+message GetUsersByCriteriaResponse {}
