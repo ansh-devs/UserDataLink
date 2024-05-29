@@ -15,7 +15,5 @@ func main() {
 	defer userService.Srvr.GracefulStop()
 	if err := userService.Srvr.Serve(userService.Ln); err != nil {
 		logrus.Fatalf("cannot start gRPC server : %v", err)
-	} else {
-
 	}
 }
