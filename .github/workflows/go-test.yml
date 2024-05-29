@@ -1,4 +1,4 @@
-name: Go-test
+name: TotalityCorp-Assessment
 on: [push, pull_request]
 
 jobs:
@@ -13,5 +13,5 @@ jobs:
           go-version: '1.21.x'
       - name: Build
         run: go build -v ./...
-      - name: Test with the Go CLI
+      - name: Tests
         run: go test ./... 

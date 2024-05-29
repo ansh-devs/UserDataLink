@@ -1,0 +1,23 @@
+syntax = "proto3";
+package protov3;
+option go_package = "./protos";
+
+service UserService {
+    rpc GetUserById (GetUserByIdRequest) returns (GetUserByIdResponse);
+    rpc GetUsersListByIds (GetUsersListByIdsRequest) returns (GetUsersListByIdsResponse);
+    rpc GetUserByCriteria (GetUserByCriteriaRequest) returns (GetUserByCriteriaResponse);
+    
+}
+
+// GetUserById Messages definations
+message GetUserByIdRequest {}
+message GetUserByIdResponse {}
+
+// GetUsersListByIds Messages definations
+message GetUsersListByIdsRequest {}
+message GetUsersListByIdsResponse {}
+
+
+// GetUserByCriteria Messages definations
+message GetUserByCriteriaRequest {}
+message GetUserByCriteriaResponse {}
