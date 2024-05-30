@@ -22,3 +22,17 @@ func IsValidId(id int64) error {
 	}
 	return nil
 }
+
+func ValidateIdsList(ids []int64, maxIdLen int) []error {
+	var errsx []error
+	for _, userID := range ids {
+		if userID == 0 {
+			errsx = append(errsx, fmt.Errorf("id must be greater than 0"))
+		}
+		if userID > int64(maxIdLen) {
+			errsx = append(errsx, fmt.Errorf("id must be smaller than %d", maxIdLen))
+
+		}
+	}
+	return errsx
+}

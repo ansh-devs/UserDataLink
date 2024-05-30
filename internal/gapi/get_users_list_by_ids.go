@@ -2,7 +2,9 @@ package gapi
 
 import (
 	"context"
+	"errors"
 
+	"github.com/ansh-devs/tc-assessment/internal/validation"
 	"github.com/ansh-devs/tc-assessment/protos"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -10,6 +12,11 @@ import (
 
 // GetUsersListByIds implements protos.UserServiceServer.
 func (s *UserService) GetUsersListByIds(_ context.Context, req *protos.GetUsersListByIdsRequest) (*protos.GetUsersListByIdsResponse, error) {
+	errs := validation.ValidateIdsList(req.Ids, 15)
+	if len(errs) > 0 {
+		return nil, status.Error(codes.InvalidArgument, errors.Join(errs...).Error())
+
+	}
 	usersDAO, err := s.Repository.GetUsersListByIds(req.Ids)
 	if err != nil {
 		return nil, status.Error(codes.Internal, err.Error())
