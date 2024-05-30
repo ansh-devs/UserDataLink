@@ -11,9 +11,15 @@ type Repository struct {
 }
 
 // GetUsersListByIds
-func (repo *Repository) GetUsersListByIds([]entity.UserID) (users []entity.User, err error) {
-
-	return repo.Users, nil
+func (repo *Repository) GetUsersListByIds(ids []entity.UserID) (users []entity.User, err error) {
+	for _, id := range ids {
+		for _, user_iter := range repo.Users {
+			if id == user_iter.ID {
+				users = append(users, user_iter)
+			}
+		}
+	}
+	return users, nil
 }
 
 // GetUserById
