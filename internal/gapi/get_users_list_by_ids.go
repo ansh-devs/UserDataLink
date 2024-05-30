@@ -10,20 +10,20 @@ import (
 
 // GetUsersListByIds implements protos.UserServiceServer.
 func (s *UserService) GetUsersListByIds(_ context.Context, req *protos.GetUsersListByIdsRequest) (*protos.GetUsersListByIdsResponse, error) {
-	repoUsers, err := s.Repository.GetUsersListByIds(req.Ids)
+	usersDAO, err := s.Repository.GetUsersListByIds(req.Ids)
 	if err != nil {
 		return nil, status.Error(codes.Internal, err.Error())
 	}
-	var users []*protos.User
-	for _, v := range repoUsers {
-		users = append(users, &protos.User{
-			Id:      v.ID,
-			FName:   v.FName,
-			Height:  float32(v.Height),
-			City:    v.City,
-			Phone:   v.Phone,
-			Married: v.Married,
+	var usersDTO []*protos.User
+	for _, userDAO := range usersDAO {
+		usersDTO = append(usersDTO, &protos.User{
+			Id:      userDAO.ID,
+			FName:   userDAO.FName,
+			Height:  float32(userDAO.Height),
+			City:    userDAO.City,
+			Phone:   userDAO.Phone,
+			Married: userDAO.Married,
 		})
 	}
-	return &protos.GetUsersListByIdsResponse{Users: users}, nil
+	return &protos.GetUsersListByIdsResponse{Users: usersDTO}, nil
 }
