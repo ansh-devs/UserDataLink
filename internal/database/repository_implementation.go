@@ -14,7 +14,15 @@ type Repository struct {
 func (repo *Repository) GetUsersListByIds([]int) (users []entity.User, err error) { return users, nil }
 
 // GetUserById
-func (repo *Repository) GetUserById(int) (user entity.User, err error) { return user, nil }
+func (repo *Repository) GetUserById(userID int) (user entity.User, err error) {
+	for _, v := range repo.Users {
+		if v.ID == userID {
+			user = v
+			return
+		}
+	}
+	return user, nil
+}
 
 // GetUsersByField
 func (repo *Repository) GetUsersByField(field, value string) (users []entity.User, err error) {
