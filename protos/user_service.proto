@@ -8,6 +8,15 @@ service UserService {
     rpc GetUsersByCriteria (GetUsersByCriteriaRequest) returns (GetUsersByCriteriaResponse);   
 }
 
+message User {
+    int64 id=1;
+    string fName=2;
+    float Height=3;
+    string City=4;
+    string Phone=5;
+    bool Married=6;
+}
+
 enum UserCriterias {
     FOO_UNSPECIFIED = 0;
     PHONE = 1;
@@ -17,12 +26,22 @@ enum UserCriterias {
 }
 
 // GetUserById Messages definations
-message GetUserByIdRequest {}
-message GetUserByIdResponse {}
+message GetUserByIdRequest {
+    int64 id =1;
+}
+
+message GetUserByIdResponse {
+    User user=1;
+}
 
 // GetUsersListByIds Messages definations
-message GetUsersListByIdsRequest {}
-message GetUsersListByIdsResponse {}
+message GetUsersListByIdsRequest {
+    repeated int64 ids=1;
+}
+
+message GetUsersListByIdsResponse {
+    repeated User users=1;
+}
 
 
 // GetUserByCriteria Messages definations 
@@ -30,4 +49,6 @@ message GetUsersByCriteriaRequest {
     UserCriterias type=1;
     string value=2;
 }
-message GetUsersByCriteriaResponse {}
+message GetUsersByCriteriaResponse {
+    repeated User users=1;
+}

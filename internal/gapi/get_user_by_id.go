@@ -7,6 +7,6 @@ import (
 )
 
 // GetUserById implements protos.UserServiceServer.
-func (b *UserService) GetUserById(_ context.Context, req *protos.GetUserByIdRequest) (resp *protos.GetUserByIdResponse, err error) {
+func (srv *UserService) GetUserById(_ context.Context, req *protos.GetUserByIdRequest) (resp *protos.GetUserByIdResponse, err error) {
 	panic("unimplemented")
 }

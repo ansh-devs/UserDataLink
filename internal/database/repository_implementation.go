@@ -11,13 +11,15 @@ type Repository struct {
 }
 
 // GetUsersListByIds
-func (repo *Repository) GetUsersListByIds([]int) (users []entity.User) { return users }
+func (repo *Repository) GetUsersListByIds([]int) (users []entity.User, err error) { return users, nil }
 
 // GetUserById
-func (repo *Repository) GetUserById(int) (user entity.User) { return user }
+func (repo *Repository) GetUserById(int) (user entity.User, err error) { return user, nil }
 
 // GetUsersByField
-func (repo *Repository) GetUsersByField(field, value string) (users []entity.User) { return users }
+func (repo *Repository) GetUsersByField(field, value string) (users []entity.User, err error) {
+	return users, nil
+}
 
 // NewUserRepository constructor for the UserRepository
 func NewUserRepository() UserRepository {
