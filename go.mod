@@ -8,6 +8,8 @@ require (
 	google.golang.org/grpc v1.64.0
 )
 
+require github.com/fatih/structs v1.1.0
+
 require (
 	github.com/joho/godotenv v1.5.1
 	golang.org/x/net v0.22.0 // indirect

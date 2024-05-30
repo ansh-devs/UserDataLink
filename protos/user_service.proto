@@ -22,7 +22,7 @@ enum UserCriterias {
     PHONE = 1;
     CITY = 2;
     HEIGHT = 3;
-    ISMARRIED = 4;
+    MARRIED = 4;
 }
 
 // GetUserById Messages definations
