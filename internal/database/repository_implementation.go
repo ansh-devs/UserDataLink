@@ -11,7 +11,7 @@ type Repository struct {
 }
 
 // GetUsersListByIds
-func (repo *Repository) GetUsersListByIds(ids []entity.UserID) (users []entity.User, err error) {
+func (repo *Repository) GetUsersListByIds(ids []int64) (users []entity.User, err error) {
 	for _, id := range ids {
 		for _, user_iter := range repo.Users {
 			if id == user_iter.ID {
@@ -23,7 +23,7 @@ func (repo *Repository) GetUsersListByIds(ids []entity.UserID) (users []entity.U
 }
 
 // GetUserById
-func (repo *Repository) GetUserById(userID entity.UserID) (user entity.User, err error) {
+func (repo *Repository) GetUserById(userID int64) (user entity.User, err error) {
 	for _, v := range repo.Users {
 		if v.ID == userID {
 			user = v

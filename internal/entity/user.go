@@ -1,8 +1,7 @@
 package entity
 
-type UserID int64
 type User struct {
-	ID      UserID  `json:"id"`
+	ID      int64   `json:"id"`
 	FName   string  `json:"fName"`
 	Height  float64 `json:"Height"`
 	City    string  `json:"City"`
