@@ -45,7 +45,8 @@ func MustListenToAddr(port string) net.Listener {
 }
 
 func (s *UserService) ConfigureGapi() {
-	s.Srvr = grpc.NewServer()
+	grpcLogger := grpc.UnaryInterceptor(GrpcLogger)
+	s.Srvr = grpc.NewServer(grpcLogger)
 	protos.RegisterUserServiceServer(s.Srvr, s)
 	reflection.Register(s.Srvr)
 	logrus.WithFields(logrus.Fields{"message": "ready to accept connections"}).Info("user_service")
