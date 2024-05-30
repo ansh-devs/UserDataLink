@@ -11,10 +11,13 @@ type Repository struct {
 }
 
 // GetUsersListByIds
-func (repo *Repository) GetUsersListByIds([]int) (users []entity.User, err error) { return users, nil }
+func (repo *Repository) GetUsersListByIds([]entity.UserID) (users []entity.User, err error) {
+
+	return repo.Users, nil
+}
 
 // GetUserById
-func (repo *Repository) GetUserById(userID int) (user entity.User, err error) {
+func (repo *Repository) GetUserById(userID entity.UserID) (user entity.User, err error) {
 	for _, v := range repo.Users {
 		if v.ID == userID {
 			user = v
@@ -26,16 +29,12 @@ func (repo *Repository) GetUserById(userID int) (user entity.User, err error) {
 
 // GetUsersByField
 func (repo *Repository) GetUsersByField(field, value string) (users []entity.User, err error) {
-	return users, nil
+	return repo.Users, nil
 }
 
 // NewUserRepository constructor for the UserRepository
 func NewUserRepository() UserRepository {
 	var users []entity.User
-
 	_ = json.Unmarshal([]byte(MockedUsers), &users)
-	// logrus.WithFields(logrus.Fields{"json_data": users}).Info("user_service")
-	return &Repository{
-		Users: users,
-	}
+	return &Repository{Users: users}
 }
