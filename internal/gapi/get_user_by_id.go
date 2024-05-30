@@ -3,6 +3,7 @@ package gapi
 import (
 	"context"
 
+	"github.com/ansh-devs/tc-assessment/internal/validation"
 	"github.com/ansh-devs/tc-assessment/protos"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -10,7 +11,9 @@ import (
 
 // GetUserById implements protos.UserServiceServer.
 func (s *UserService) GetUserById(_ context.Context, req *protos.GetUserByIdRequest) (*protos.GetUserByIdResponse, error) {
-
+	if err := validation.IsValidId((req.GetId())); err != nil {
+		return nil, status.Error(codes.InvalidArgument, err.Error())
+	}
 	user, err := s.Repository.GetUserById(int(req.GetId()))
 	if err != nil {
 		return nil, status.Error(codes.Internal, err.Error())
