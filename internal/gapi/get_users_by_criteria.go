@@ -3,6 +3,7 @@ package gapi
 import (
 	"context"
 
+	"github.com/ansh-devs/tc-assessment/internal/validation"
 	"github.com/ansh-devs/tc-assessment/protos"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -10,6 +11,10 @@ import (
 
 // GetUserByCriteria implements protos.UserServiceServer.
 func (s *UserService) GetUsersByCriteria(_ context.Context, req *protos.GetUsersByCriteriaRequest) (*protos.GetUsersByCriteriaResponse, error) {
+	err := validation.IsValidCriteria(req.GetType().String())
+	if err != nil {
+		return nil, status.Error(codes.InvalidArgument, err.Error())
+	}
 	var usersDTO []*protos.User
 	usersDAO, err := s.Repository.GetUsersByField(req.GetType().String(), req.GetValue())
 	if err != nil {
@@ -25,6 +30,5 @@ func (s *UserService) GetUsersByCriteria(_ context.Context, req *protos.GetUsers
 			Married: userDAO.Married,
 		})
 	}
-
 	return &protos.GetUsersByCriteriaResponse{Users: usersDTO}, nil
 }

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"regexp"
 	"strconv"
+	"strings"
 )
 
 // isValidIdExp check whether the given parameter is valid int or not
@@ -35,4 +36,14 @@ func ValidateIdsList(ids []int64, maxIdLen int) []error {
 		}
 	}
 	return errsx
+}
+
+func IsValidCriteria(criteria string) error {
+	lowerCaseCriteria := strings.ToLower(criteria)
+	if lowerCaseCriteria == "phone" || lowerCaseCriteria == "city " || lowerCaseCriteria == "married" || lowerCaseCriteria == "height" {
+		return nil
+	} else {
+		return fmt.Errorf("incorrect enum value passed : must only containe { PHONE, CITY, MARRIED, HEIGHT }")
+	}
+
 }
