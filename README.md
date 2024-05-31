@@ -2,10 +2,10 @@
 
 #### Here is the documentation of the TotalityCorp's Assignment
 
-### **Aspects Taken in considerations**
+<!-- ### **Aspects Taken in considerations**
 
 - &#9745; Get-Users with a list of IDs provided
-- &#9745; Get-User-Details with a specific ID provided
+- &#9745; Get-User-Details with a specific ID provided -->
 
 <!-- -  &#9746; -->
 
@@ -102,7 +102,7 @@
 
     * _Response_
     ```
-  +-------+---------------------+----------+
+    +-------+---------------------+----------+
     | FIELD |        TYPE         | REPEATED |
     +-------+---------------------+----------+
     | users | TYPE_MESSAGE (User) | true     |
@@ -113,8 +113,16 @@
 For the request and response of RPC calls checkout the [`user_service.proto`](/protos/user_service.proto)
 
 * **Grpc Interceptor Logging for Incoming Requests**
-![](https://private-user-images.githubusercontent.com/73169410/335441726-dbfb8e6b-90ba-4851-84be-b589080b09a0.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTcxMjg2MzcsIm5iZiI6MTcxNzEyODMzNywicGF0aCI6Ii83MzE2OTQxMC8zMzU0NDE3MjYtZGJmYjhlNmItOTBiYS00ODUxLTg0YmUtYjU4OTA4MGIwOWEwLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA1MzElMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNTMxVDA0MDUzN1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWFmZjg0OGE2MTExZTk0ZTgzNmI3YzRiOTc0NzkwOTEyM2JlYWM5MzNkODQwNGI4MzY5MmZmODk4NzVmN2QzNWQmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.2thX25r1tv5-xawpcVycrkPIdv4QfKUmBT9JrG4WY38)
+![alt-logging-image](https://private-user-images.githubusercontent.com/73169410/335441726-dbfb8e6b-90ba-4851-84be-b589080b09a0.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTcxMjg2MzcsIm5iZiI6MTcxNzEyODMzNywicGF0aCI6Ii83MzE2OTQxMC8zMzU0NDE3MjYtZGJmYjhlNmItOTBiYS00ODUxLTg0YmUtYjU4OTA4MGIwOWEwLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA1MzElMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNTMxVDA0MDUzN1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWFmZjg0OGE2MTExZTk0ZTgzNmI3YzRiOTc0NzkwOTEyM2JlYWM5MzNkODQwNGI4MzY5MmZmODk4NzVmN2QzNWQmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.2thX25r1tv5-xawpcVycrkPIdv4QfKUmBT9JrG4WY38)
 
 ### **Environment Variable**
 
 To run this project, The environment variable `PORT` must be in the accessible scope which is used to set the port where the _gRPC_ server will be listening for the incoming connections.
+
+### **Steps To Run**
+* Without Docker in Linux/WSL Environment:
+    * `make run` - will execute the source code. 
+    * `make build` - will build the executable binary from the source code. 
+* With Docker:
+    * `docker build . -t user-service` - will build image from Dockerfile.
+    * `docker run -d --restart=always -p 8080:8080 user-service` - will run the image inside container. 
