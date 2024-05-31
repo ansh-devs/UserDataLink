@@ -44,13 +44,10 @@ func (repo *Repository) GetUserById(userID int64) (user entity.User, err error) 
 func (repo *Repository) GetUsersByField(field, value string) (users []entity.User, err error) {
 	lowerCaseField := strings.ToLower(field)
 	lowerCaseValue := strings.ToLower(value)
-	fmt.Println(lowerCaseField)
-	fmt.Println(lowerCaseValue)
 
 	for _, userDAO := range repo.Users {
 		m := structs.Map(userDAO)
 		for k, v := range m {
-			fmt.Println(k+" ", v)
 			if strings.ToLower(k) == lowerCaseField && strings.ToLower(fmt.Sprintf("%v", v)) == fmt.Sprintf("%v", lowerCaseValue) {
 				users = append(users, userDAO)
 			}

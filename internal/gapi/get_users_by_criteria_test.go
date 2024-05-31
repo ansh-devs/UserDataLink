@@ -46,7 +46,7 @@ func TestUserService_GetUsersByCriteria(t *testing.T) {
 		t.Fatalf("grpc.DialContext %v", err)
 	}
 	client := protos.NewUserServiceClient(conn)
-	resp, err := client.GetUsersByCriteria(context.Background(), &protos.GetUsersByCriteriaRequest{Type: protos.UserCriterias_CITY, Value: "kalkara"})
+	resp, err := client.GetUsersByCriteria(context.Background(), &protos.GetUsersByCriteriaRequest{Type: 2, Value: "kalkara"})
 	if err != nil {
 		t.Fatalf("GetUsersByCriteria error %v", err)
 	}

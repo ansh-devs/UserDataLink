@@ -40,10 +40,20 @@ func ValidateIdsList(ids []int64, maxIdLen int) []error {
 
 func IsValidCriteria(criteria string) error {
 	lowerCaseCriteria := strings.ToLower(criteria)
-	if lowerCaseCriteria == "phone" || lowerCaseCriteria == "city " || lowerCaseCriteria == "married" || lowerCaseCriteria == "height" {
-		return nil
-	} else {
+	switch lowerCaseCriteria {
+	case "phone":
+	case "city":
+	case "married":
+	case "height":
+	default:
 		return fmt.Errorf("incorrect enum value passed : must only containe { PHONE, CITY, MARRIED, HEIGHT }")
+
 	}
+	return nil
+	// if lowerCaseCriteria == "phone" || lowerCaseCriteria == "city " || lowerCaseCriteria == "married" || lowerCaseCriteria == "height" {
+	// 	return nil
+	// } else {
+
+	// }
 
 }
