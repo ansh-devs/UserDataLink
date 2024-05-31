@@ -8,6 +8,8 @@ import (
 	"github.com/ansh-devs/tc-assessment/internal/database"
 	"github.com/ansh-devs/tc-assessment/protos"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 	"google.golang.org/grpc/test/bufconn"
 )
 
@@ -52,5 +54,11 @@ func TestUserService_GetuserById(t *testing.T) {
 	}
 	if resp.GetUser().FName != "Nerita Bomfield" {
 		t.Fatalf("Unexpected values %v", resp.User)
+	}
+	// Case when out of bound id is passed resulting in InvalidArgument proto error
+	_, err = client.GetUserById(context.Background(), &protos.GetUserByIdRequest{Id: 20})
+	code, _ := status.FromError(err)
+	if code.Code() != codes.InvalidArgument {
+		t.Fatalf("GetUserById error Invalid Argument unexpected code %v", err)
 	}
 }
