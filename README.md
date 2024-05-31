@@ -31,7 +31,89 @@
 +-------------+--------------------+---------------------------+----------------------------+
 ```
 
+- Available Proto Message Types-
+```
++----------------------------+
+|          MESSAGE           |
++----------------------------+
+| GetUserByIdRequest         |
+| GetUserByIdResponse        |
+| GetUsersByCriteriaRequest  |
+| GetUsersByCriteriaResponse |
+| GetUsersListByIdsRequest   |
+| GetUsersListByIdsResponse  |
++----------------------------+
+```
+
+* **GetUserById RPC types-**
+    * _Request_
+
+    ```
+    +-------+------------+----------+
+    | FIELD |    TYPE    | REPEATED |
+    +-------+------------+----------+
+    | id    | TYPE_INT64 | false    |
+    +-------+------------+----------+
+
+    ```
+
+    * _Response_
+    ```
+    +-------+---------------------+----------+
+    | FIELD |        TYPE         | REPEATED |
+    +-------+---------------------+----------+
+    | user  | TYPE_MESSAGE (User) | false    |
+    +-------+---------------------+----------+
+    ```
+
+* **GetUsersListByIds RPC types-**
+    * _Request_
+
+    ```
+    +-------+------------+----------+
+    | FIELD |    TYPE    | REPEATED |
+    +-------+------------+----------+
+    | ids   | TYPE_INT64 | true     |
+    +-------+------------+----------+
+
+    ```
+
+    * _Response_
+    ```
+    +-------+---------------------+----------+
+    | FIELD |        TYPE         | REPEATED |
+    +-------+---------------------+----------+
+    | users | TYPE_MESSAGE (User) | true     |
+    +-------+---------------------+----------+
+    ```
+
+* **GetUsersByCriteria RPC types-**
+    * _Request_
+
+    ```
+    +-------+---------------------------+----------+
+    | FIELD |           TYPE            | REPEATED |
+    +-------+---------------------------+----------+
+    | type  | TYPE_ENUM (UserCriterias) | false    |
+    | value | TYPE_STRING               | false    |
+    +-------+---------------------------+----------+
+
+    ```
+
+    * _Response_
+    ```
+  +-------+---------------------+----------+
+    | FIELD |        TYPE         | REPEATED |
+    +-------+---------------------+----------+
+    | users | TYPE_MESSAGE (User) | true     |
+    +-------+---------------------+----------+
+    ```
+
+
 For the request and response of RPC calls checkout the [`user_service.proto`](/protos/user_service.proto)
+
+* **Grpc Interceptor Logging for Incoming Requests**
+![](https://private-user-images.githubusercontent.com/73169410/335441726-dbfb8e6b-90ba-4851-84be-b589080b09a0.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MTcxMjg2MzcsIm5iZiI6MTcxNzEyODMzNywicGF0aCI6Ii83MzE2OTQxMC8zMzU0NDE3MjYtZGJmYjhlNmItOTBiYS00ODUxLTg0YmUtYjU4OTA4MGIwOWEwLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDA1MzElMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwNTMxVDA0MDUzN1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWFmZjg0OGE2MTExZTk0ZTgzNmI3YzRiOTc0NzkwOTEyM2JlYWM5MzNkODQwNGI4MzY5MmZmODk4NzVmN2QzNWQmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.2thX25r1tv5-xawpcVycrkPIdv4QfKUmBT9JrG4WY38)
 
 ### **Environment Variable**
 
