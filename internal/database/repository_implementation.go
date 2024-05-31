@@ -22,6 +22,9 @@ func (repo *Repository) GetUsersListByIds(ids []int64) (users []entity.User, err
 			}
 		}
 	}
+	if len(users) == 0 {
+		return users, fmt.Errorf("no result found")
+	}
 	return users, nil
 }
 
@@ -33,6 +36,7 @@ func (repo *Repository) GetUserById(userID int64) (user entity.User, err error) 
 			return
 		}
 	}
+
 	return user, nil
 }
 
@@ -51,6 +55,9 @@ func (repo *Repository) GetUsersByField(field, value string) (users []entity.Use
 				users = append(users, userDAO)
 			}
 		}
+	}
+	if len(users) == 0 {
+		return users, fmt.Errorf("no result found")
 	}
 
 	return users, nil
