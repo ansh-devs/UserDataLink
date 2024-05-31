@@ -13,7 +13,7 @@
 
 ### **Software Architecture Patterns and paradiagms used -**
 
-- **_Repository Pattern_** &#8594; used in Repository-Layer/Database layer inside the _`internal/database`_ directory to make business logic and database layer logic decoupled. In future if needed just make the struct and implement the [_`UserRepository`_](/internal/database/repository.go) interface to the desired database such that there will be no need to make any changes in the [_`UserService`_](/internal/gapi/server.go) Service layer.
+- **_Repository Pattern_** &#8594; used in Repository-Layer/Database layer inside the _`internal/database`_ directory to make business logic and database layer logic decoupled. In future if needed just make the struct and implement the [_`UserRepository`_](/internal/database/repository.go) interface to the desired database (Postgres/Cassandra/MongoDb) such that there will be no need to make any changes in the [_`UserService`_](/internal/gapi/server.go) Service layer.
 - **_Separation Of Concern (from SOLID)_** &#8594; there is a separation between the transportation layer **_gRPC_** and the Service layer and the repository layer
 - **_Dependency Inversion Principle (from SOLID)_** &#8594; Dependency of `UserRepository` is injected in the `UserService` to perform **Db-calls**.
 - **_Builder Pattern from Design Principles_** &#8594; used in the constructor of the `UserService` which itself configure the **gRPC's Reflection** and bind the **PORT** to the service.
