@@ -2,7 +2,6 @@
 
 [](https://github.com/ansh-devs/userdatalink/actions/workflows/go-test.yml/badge.svg)
 
-#### Here is the documentation of the TotalityCorp's Assignment
 
 <!-- ### **Aspects Taken in considerations**
 
