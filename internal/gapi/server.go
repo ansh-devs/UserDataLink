@@ -4,8 +4,8 @@ import (
 	"net"
 	"os"
 
-	"github.com/ansh-devs/tc-assessment/internal/database"
-	"github.com/ansh-devs/tc-assessment/protos"
+	"github.com/ansh-devs/userdatalink/internal/database"
+	"github.com/ansh-devs/userdatalink/protos"
 	_ "github.com/joho/godotenv/autoload"
 	"github.com/sirupsen/logrus"
 	"google.golang.org/grpc"

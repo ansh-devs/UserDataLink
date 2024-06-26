@@ -1,6 +1,6 @@
 package database
 
-import "github.com/ansh-devs/tc-assessment/internal/entity"
+import "github.com/ansh-devs/userdatalink/internal/entity"
 
 // UserRepository represents a respository that interacts with a database.
 type UserRepository interface {

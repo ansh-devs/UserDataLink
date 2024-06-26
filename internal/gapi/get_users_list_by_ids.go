@@ -4,8 +4,8 @@ import (
 	"context"
 	"errors"
 
-	"github.com/ansh-devs/tc-assessment/internal/validation"
-	"github.com/ansh-devs/tc-assessment/protos"
+	"github.com/ansh-devs/userdatalink/internal/validation"
+	"github.com/ansh-devs/userdatalink/protos"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

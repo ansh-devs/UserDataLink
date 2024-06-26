@@ -1,4 +1,4 @@
-name: TotalityCorp-Assessment
+name: UserDataLink-Build
 on: [push]
 
 jobs:

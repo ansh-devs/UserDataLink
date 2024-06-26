@@ -1,6 +1,6 @@
 ## **User Service with Search Functionality using gRPC as transportation layer**
 
-[](https://github.com/ansh-devs/tc-assessment/actions/workflows/go-test.yml/badge.svg)
+[](https://github.com/ansh-devs/userdatalink/actions/workflows/go-test.yml/badge.svg)
 
 #### Here is the documentation of the TotalityCorp's Assignment
 

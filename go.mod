@@ -1,4 +1,4 @@
-module github.com/ansh-devs/tc-assessment
+module github.com/ansh-devs/userdatalink
 
 go 1.22.1
 

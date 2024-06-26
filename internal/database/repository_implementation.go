@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/ansh-devs/tc-assessment/internal/entity"
+	"github.com/ansh-devs/userdatalink/internal/entity"
 	"github.com/fatih/structs"
 )
 

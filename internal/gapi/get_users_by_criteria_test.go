@@ -5,8 +5,8 @@ import (
 	"net"
 	"testing"
 
-	"github.com/ansh-devs/tc-assessment/internal/database"
-	"github.com/ansh-devs/tc-assessment/protos"
+	"github.com/ansh-devs/userdatalink/internal/database"
+	"github.com/ansh-devs/userdatalink/protos"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/test/bufconn"
 )

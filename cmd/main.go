@@ -6,7 +6,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/ansh-devs/tc-assessment/internal/gapi"
+	"github.com/ansh-devs/userdatalink/internal/gapi"
 	"github.com/sirupsen/logrus"
 )
 
